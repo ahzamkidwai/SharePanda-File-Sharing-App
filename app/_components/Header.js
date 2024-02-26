@@ -60,7 +60,7 @@ function Header() {
               <div class="sm:flex sm:gap-4">
                 <a
                   class="rounded-md bg-primary hover:bg-blue-700 px-5 py-2.5 text-sm font-medium text-white shadow"
-                  href="#"
+                  href="/files"
                 >
                   Get Started
                 </a>
