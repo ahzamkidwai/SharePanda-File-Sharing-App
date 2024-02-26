@@ -11,7 +11,9 @@ function Hero() {
             <span className="text-primary">Share</span> your files in one place
           </h1>
 
-          <p className="mt-4 sm:text-xl/relaxed text-gray-500">{Constant.desc}</p>
+          <p className="mt-4 sm:text-xl/relaxed text-gray-500">
+            {Constant.desc}
+          </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
