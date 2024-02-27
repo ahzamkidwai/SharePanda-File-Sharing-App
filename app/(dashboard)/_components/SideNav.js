@@ -33,12 +33,13 @@ function SideNav() {
         <Image src="/logo.svg" width={150} height={100} />
       </div>
       <div className="flex flex-col float-left w-full">
-        {menuList.map((item, index) => (
+        {menuList.map((item) => (
           <button
+            key={item.id} // Using unique id as the key
             className={`flex gap-4 p-2 px-0 hover:bg-gray-100 w-full text-gray-500 ${
-              activeState === index ? "bg-blue-50 text-primary" : ""
+              activeState === item.id ? "bg-blue-50 text-primary" : ""
             }`}
-            onClick={() => setActiveState(index)}
+            onClick={() => setActiveState(item.id)}
           >
             <item.icon />
             {item.name}
