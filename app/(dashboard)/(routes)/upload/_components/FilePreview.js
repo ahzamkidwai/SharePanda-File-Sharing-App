@@ -1,5 +1,5 @@
 import { X } from "lucide-react";
-import Image from "next/image";
+// import Image from "next/image";
 import React from "react";
 
 function FilePreview({ file, removeFile }) {

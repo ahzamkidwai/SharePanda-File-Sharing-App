@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import UploadForm from "./_components/UploadForm";
 import { app } from "@/firebaseConfig";
 import {
@@ -10,19 +10,22 @@ import {
 } from "firebase/storage";
 
 function Page() {
+  const [progressValue, setProgressValue] = useState(0);
+
   const storage = getStorage(app);
   const uploadFile = (file) => {
     const metadata = {
       contentType: file.type,
     };
     console.log("File inside uploadFile Handler inside page.js : ", file);
-    const imageRef = ref(storage, 'file-upload/'+file.name);
+    const imageRef = ref(storage, "file-upload/" + file.name);
     const uploadTask = uploadBytesResumable(imageRef, file, file.type);
 
     uploadTask.on("state_changed", (snapshot) => {
       // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
       const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       console.log("Upload is " + progress + "% done");
+      setProgressValue(progress);
 
       progress === 100 &&
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
@@ -39,7 +42,10 @@ function Page() {
         it...
       </h2>
 
-      <UploadForm uploadButtonClick={(file) => uploadFile(file)} />
+      <UploadForm
+        progress={progressValue}
+        uploadButtonClick={(file) => uploadFile(file)}
+      />
     </div>
   );
 }
